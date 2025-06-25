@@ -73,7 +73,7 @@ def send_reminder(client: dict):
     twilio_client = Client(TWILIO_ACCOUNT_SID, TWILIO_AUTH_TOKEN)
 
     # DONT CHANGE THE NUMBER THATS THE TWILIO SANDBOX NUMBER
-    from_whatsapp_number = 'whatsapp:+17622526286',
+    from_whatsapp_number = 'whatsapp:+14155238886',
     to_whatsapp_number = f"whatsapp:{client['phone_number']}"
     body: str = f"Hi {client['name']}. Your payment of MXN{client['pending_amount']} is due since {client['due_date']}."
 
