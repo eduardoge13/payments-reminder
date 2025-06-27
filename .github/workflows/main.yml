@@ -1,34 +1,33 @@
-name: Monitoring
+name: Payment Reminder System
 
 on:
   schedule:
-    - cron: "0 0 * * *"
-  workflow_dispatch:
+    - cron: "0 9 * * *"  # Run daily at 9 AM UTC
+  workflow_dispatch:  # Allow manual triggering
 
 jobs:
-  monitor:
+  payment-reminders:
     runs-on: ubuntu-latest
+    
     env:
       NOTION_API_TOKEN: ${{ secrets.NOTION_API_TOKEN }}
       NOTION_DATABASE_ID: ${{ secrets.NOTION_DATABASE_ID }}
       TWILIO_ACCOUNT_SID: ${{ secrets.TWILIO_ACCOUNT_SID }}
       TWILIO_AUTH_TOKEN: ${{ secrets.TWILIO_AUTH_TOKEN }}
+    
     steps:
-      - name: Setup Repository
-        uses: actions/checkout@v2
-        with:
-          ref: main
+      - name: Checkout code
+        uses: actions/checkout@v4 # Download the code from the repository to the VM
 
       - name: Set up Python
-        uses: actions/setup-python@v2
+        uses: actions/setup-python@v4
         with:
-          python-version: 3.x
+          python-version: '3.11'
 
-      - name: Install PIP Dependencies
-        run: |-
+      - name: Install dependencies
+        run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
-      - name: Send Reminders
-        run: |-
-          python main.py
+      - name: Run payment reminder system
+        run: python main.py
