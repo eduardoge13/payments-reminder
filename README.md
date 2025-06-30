@@ -21,7 +21,7 @@ An automated payment reminder system that uses machine learning optimization and
 
 1. Clone the repository
    ```bash
-   git clone https://github.com/yourusername/payment-reminders.git
+   git clone https://github.com/eduardoge13/payments-reminder
    cd payment-reminders
    ```
 
